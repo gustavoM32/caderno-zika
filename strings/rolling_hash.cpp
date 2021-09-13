@@ -28,9 +28,10 @@ ll sum(ll a, ll b) {
 // Must be called once in the beginning of the program to compute 
 // powers of the prime bases
 void prec() {
-	For(k,0,K) pot[0][k] = 1;
-	For(i,1,N)
-		For(k,0,K)
+	for(int k = 0; k < K; k++)
+		pot[0][k] = 1;
+	for(int i = 1; i < N; i++)
+		for(int k = 0; k < K; k++)
 			pot[i][k] = mul(pot[i-1][k], P[k]);
 }
  
@@ -38,14 +39,14 @@ struct hsh{
 	array<ll, K> suf[N];
 	hsh() {}
 	hsh(string &s) {
-		roF(i,sz(s)-1,0)
-			For(k,0,K)
+		for(int i = sz(s)-1; i >= 0; i--)
+			for(int k = 0; k < K; k++)
 				suf[i][k] = sum(mul(suf[i+1][k], P[k]), s[i] - START + 1);
 	}
 	// Queries the hashing of the substring s[l, r)
 	array<ll, K> que(int l, int r) {
 		array<ll, K> cur;
-		For(k,0,K)
+		for(int k = 0; k < K; k++)
 			cur[k] = sum(suf[l][k], MOD - mul(suf[r][k], pot[r-l][k]));
 		return cur;
 	}
