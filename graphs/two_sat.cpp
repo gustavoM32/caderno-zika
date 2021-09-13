@@ -12,7 +12,7 @@ int conv(int x) {
 	else return (-x - 1) << 1 | 1;
 }
  
-vi adj[N], adjt[N];
+vector<int> adj[N], adjt[N];
  
 void addEdge(int u, int v) {
 	adj[u].pb(v);
