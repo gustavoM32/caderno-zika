@@ -16,7 +16,8 @@
 const int NEUT = 0;
 
 struct segTree {
-	vector<int> t = vi(1, NEUT), left = vi(1, 0), right = vi(1, 0);
+	vector<int> t = vector<int>(1, NEUT);
+	vector<int> left = vector<int>(1, 0), right = vector<int>(1, 0);
 	static int n;
 	int newNode(int v, int l=0, int r=0) {
 		t.pb(v), left.pb(l), right.pb(r);
@@ -35,9 +36,10 @@ struct segTree {
 	int updNode(int cur_value, int upd_value) {
 		return cur_value + upd_value;
 	}
+	// updates the position pos of version k with the value v
 	int upd(int k, int pos, int v, int L=0, int R=n) {
 		int nxt = newNode(t[k], left[k], right[k]);
-		if(L+1 == R) t[nxt] = updNode(t[nxt], v);
+		if(L + 1 == R) t[nxt] = updNode(t[nxt], v);
 		else {
 			int M = (L + R) >> 1;
 			int temp;
@@ -47,6 +49,7 @@ struct segTree {
 		}
 		return nxt;
 	}
+	// query in the range [l, r) of version k
 	int que(int k, int l, int r, int L=0, int R=n){
 		if(r <= L || R <= l) return NEUT;
 		if(l <= L && R <= r) return t[k];
