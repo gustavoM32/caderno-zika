@@ -1,8 +1,8 @@
 /* Persistent segment tree. This example is for queries of sum in range
  * and updates of sum in position, but any query or update can be achieved
  * changing the NEUT value, and functions updNode and merge.
- * The version 0 of the persistent segTree has implicitly an array of length
- * n full of NEUT values.
+ * The version 0 of the persistent segTree has implicitly an array of
+ * length n full of NEUT values.
  *
  * It's recommend to set n as the actual length of the array.
  * ```
