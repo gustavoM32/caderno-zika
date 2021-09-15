@@ -17,7 +17,8 @@
  *
  * n - (input) number of doctors.
  * m - (input) number of hospitals.
- * cap - (input) array of hospitals' capacities.
+ * cap - (input) array of hospitals' capacities. In the end of the algorithm,
+        it will have the remaining capacity of each hospital.
  * doc - (input) list of hospital candidates of each doctor sorted by preference.
  * hos - (input) list of doctor candidates of each hospital sorted by preference.
  * assign - assign[i] is the hospital assigned to doctor i or -1 if it hasn't any
