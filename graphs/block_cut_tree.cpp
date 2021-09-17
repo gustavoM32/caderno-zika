@@ -25,7 +25,6 @@ int belong[N], low[N], disc[N], st[N], edge_belong[N];
 bool ap[N];
 vector<int> adj[N], adj_bct[N];
 
- 
 void bcc(int v, int p=-1) {
 	low[v] = disc[v] = ++temp;
 	int child = 0;
@@ -55,14 +54,13 @@ void bcc(int v, int p=-1) {
 		}
 	}
 }
- 
- 
+
 void addEdge(int u, int v) {
 	adj[u].pb(edge_cont);	
 	adj[v].pb(edge_cont);	
 	edge[edge_cont++] = {u, v};
 }
- 
+
 void build(int n) {
 	for(int i = 0; i < n; i++) {
 		low[i] = disc[i] = ap[i] = 0;
