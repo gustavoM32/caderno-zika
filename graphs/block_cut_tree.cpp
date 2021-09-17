@@ -1,4 +1,4 @@
-/* Build the block-cut tree of a given graph. The block-cut tree is a graph
+/* Builds the block-cut tree of a given graph. The block-cut tree is a graph
  * decomposition in biconnected components (blocks) and articulation points (cuts).
  * Every block is uniquely defined by a set of edges. This template builds the
  * block-cut tree with the blocks and cuts as different vertices.
