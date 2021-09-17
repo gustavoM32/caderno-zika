@@ -44,8 +44,8 @@ vector<int> galeShapley() {
 		if(pos[i] < sz(doc[i]))
 			Q.push(i);
 	};
-	for(int i = 0; i < n; i++) 
-        tryPush(i);
+	for(int i = 0; i < n; i++)
+		tryPush(i);
 	while(!Q.empty()) {
 		int u = Q.front();
 		Q.pop();
