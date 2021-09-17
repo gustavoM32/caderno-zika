@@ -1,7 +1,7 @@
 /* Builds the block-cut tree of a given graph. The block-cut tree is a graph
  * decomposition in biconnected components (blocks) and articulation points (cuts).
- * Every block is uniquely defined by a set of edges. This template builds the
- * block-cut tree with the blocks and cuts as different vertices.
+ * Every block is uniquely defined by a set of edges. This template considers
+ * the the articulation point only belongs to the cut.
  * Usage: add undirected edges with addEdge(u, v) and then call build(n), when n is
  * the total number of vertices in the graph. WARNING: make sure to do not add
  * parallel edges. Also, notice that you have to clear adj, adj_bct and edge_cont
