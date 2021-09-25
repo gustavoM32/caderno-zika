@@ -37,10 +37,10 @@ struct segTree {
         build(v);
     }
 
-    // update position i with value x
+    // add x to position i
     void update(int i, ll x) {
         i += n;
-        st[i] = x;
+        st[i] += x;
         while (i > 1) {
             st[i >> 1] = combine(st[i], st[i ^ 1]);
             i >>= 1;

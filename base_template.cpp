@@ -12,8 +12,3 @@ typedef long long ll;
 const ll N = 1e6;
 const ll INF = 1LL << 61;
 const ll MOD = 1e9 + 7;
-
-int main() {
-
-    return 0;
-}
