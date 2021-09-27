@@ -1,7 +1,8 @@
 /* Returns true if a given set of conditions of the form a v b is
- * satisfiable
+ * satisfiable. NOTE: you must clear adj and adjt between testcases.
  *
- * n - number of atomic propositions
+ * n - (input) number of atomic propositions
+ * assign - one valid assignation of truth values
  *
  * Complexity: O(n)
  */
@@ -42,11 +43,15 @@ void mark(int v, int id) {
 	for(int u: adjt[v]) if(comp[u] == -1)
 		mark(u, id);
 }
- 
+
+bool assign[N];
+
 // Call this function after adding al conditions with addProp
 bool twoSat(int n) {
-	for(int i = 0; i < (n << 1); i++)
-		comp[i << 1] = comp[i << 1 | 1] = -1;
+	for(int i = 0; i < (n << 1); i++) {
+		comp[i] = -1;
+		vis[i] = 0;
+	}
 	for(int i = 0; i < (n << 1); i++) if(!vis[i])
 		toposort(i);
 	int cont = 0;
@@ -56,8 +61,10 @@ bool twoSat(int n) {
 		if(comp[v] == -1)
 			mark(v, cont++);
 	}
-	for(int i = 0; i < n; i++)
+	for(int i = 0; i < n; i++) {
 		if(comp[i << 1] == comp[i << 1 | 1])
 			return 0;
+		assign[i] = comp[i << 1] > comp[i << 1 | 1];
+	}
 	return 1;
 }
