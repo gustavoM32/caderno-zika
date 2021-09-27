@@ -27,9 +27,11 @@ struct segTree {
 
     public:
 
+    segTree() {}
+
     // initialize with zeroes
     segTree(int n) : n(n) {
-        st.assign(2*n, 0);
+        resize(n);
     }
 
     // initialize with vector
@@ -37,10 +39,14 @@ struct segTree {
         build(v);
     }
 
-    // update position i with value x
+    void resize(int n) {
+        st.assign(2*n, 0);
+    }
+
+    // add x to position i
     void update(int i, ll x) {
         i += n;
-        st[i] = x;
+        st[i] += x;
         while (i > 1) {
             st[i >> 1] = combine(st[i], st[i ^ 1]);
             i >>= 1;
