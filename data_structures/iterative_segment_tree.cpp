@@ -27,14 +27,20 @@ struct segTree {
 
     public:
 
+    segTree() {}
+
     // initialize with zeroes
     segTree(int n) : n(n) {
-        st.assign(2*n, 0);
+        resize(n);
     }
 
     // initialize with vector
     segTree(vector<ll> &v) : segTree(v.size()) {
         build(v);
+    }
+
+    void resize(int n) {
+        st.assign(2*n, 0);
     }
 
     // add x to position i
