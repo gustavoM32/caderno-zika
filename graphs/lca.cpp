@@ -14,8 +14,8 @@
 
 const int LOGN = 20;
 
-int anc[N][LOG], tam[N], tin[N];
-vi adj[N];
+int anc[N][LOGN], tam[N], tin[N];
+vector<int> adj[N];
 int node_id;
 
 void addEdge(int u, int v) {
@@ -31,7 +31,7 @@ int eulerTour(int u, int p) {
     for(int i = 1; i < LOGN; i++)
         anc[u][i] = anc[anc[u][i-1]][i-1];
     for(int v: adj[u]) if(v != p)
-        tam[u] += dfs(v, u);
+        tam[u] += eulerTour(v, u);
     return tam[u];
 }
 

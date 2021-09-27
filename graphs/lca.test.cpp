@@ -9,10 +9,10 @@ int main() {
 
     for (int i = 1; i < n; i++) {
         int p; cin >> p;
-        add_edge(p, i);
+        addEdge(p, i);
     }
 
-    dfs(0, 0);
+    eulerTour(0, 0);
 
     for (int i = 0; i < q; i++) {
         int u, v;
