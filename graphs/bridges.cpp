@@ -10,8 +10,8 @@
  */
 
 vector<pair<int, int>> edge;
-int low[N], disc[N];
-bool bridge[N], t_in;
+int low[N], disc[N], t_in;
+bool bridge[N];
 vector<int> adj[N];
 
 void compute(int v, int p=-1) {
@@ -19,7 +19,6 @@ void compute(int v, int p=-1) {
 	for(int e : adj[v]) {
 		int u = edge[e].first ^ edge[e].second ^ v;
 		if(!disc[u]) {
-			childs++;
 			compute(u, e);
 			low[v] = min(low[v], low[u]);
 			if(low[u] > disc[v]) bridge[e] = 1;
@@ -39,11 +38,18 @@ void findBridges(int n) {
 	for(int i = 0; i < n; i++) {
 		low[i] = disc[i] = 0;
 	}
-	for(int i = 0; i < sz(edges); i++) {
-		bridges[i] = 0;
+	for(int i = 0; i < sz(edge); i++) {
+		bridge[i] = 0;
 	}
 	t_in = 0;
 	for(int i = 0; i < n; i++) {
         if(!disc[i]) compute(i);
 	}
+}
+
+// Must be call between testcases
+void clearGraph(int n) {
+	for(int i = 0; i < n; i++)
+		adj[i].clear();
+	edge.clear();
 }
