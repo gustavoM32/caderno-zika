@@ -9,8 +9,8 @@
  * Complexity: O(V + E) time and space
  */
 
-int low[N], disc[N];
-bool ap[N], t_in;
+int low[N], disc[N], t_in;
+bool ap[N];
 vector<int> adj[N];
 
 void compute(int v, int root, int p=-1) {
@@ -22,7 +22,7 @@ void compute(int v, int root, int p=-1) {
 			compute(u, root, v);
 			low[v] = min(low[v], low[u]);
 			if(low[u] >= disc[v] && (v != root || childs > 1))
-				ap[u] = 1;
+				ap[v] = 1;
 		} else if(u != p) {
 			low[v] = min(low[v], disc[u]);
 		}
@@ -42,4 +42,10 @@ void findAps(int n) {
 	for(int i = 0; i < n; i++) {
         if(!disc[i]) compute(i, i);
 	}
+}
+
+// Must be call between testcases
+void clearGraph(int n) {
+	for(int i = 0; i < n; i++)
+		adj[i].clear();
 }
