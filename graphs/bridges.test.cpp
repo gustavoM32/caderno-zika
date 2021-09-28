@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define PROBLEM "https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=251"
+#define PROBLEM "https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4648"
 #define IGNORE
 #define fastio ios_base::sync_with_stdio(0);cin.tie(0)
 #define pb push_back
