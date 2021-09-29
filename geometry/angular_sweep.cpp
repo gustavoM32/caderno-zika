@@ -20,7 +20,7 @@ struct point {
 	bool operator<(const point& other) const { // for angular sweep
 		int this_side = side(), other_side = other.side();
         if(this_side != other_side) return this_side < other_side;
-        return *this ^ other > 0
+        return (*this ^ other) > 0;
     }
 	point rotate(point r) {
         return point(*this ^ r, *this * r);
