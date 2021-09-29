@@ -14,7 +14,7 @@ struct point {
 	ll operator^(const point& other) const { // cross product
         return x*other.y - y*other.x;
     }
-    int side() {
+    int side() const {
         return x < 0 || (x == 0 && y > 0);
     }
 	bool operator<(const point& other) const { // for angular sweep
