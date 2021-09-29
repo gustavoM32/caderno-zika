@@ -6,8 +6,8 @@
 
 struct point { 
 	ll x, y;
-	point(ll x, ll y) : x(x), y(y){}
-	point(){}
+	point(ll x, ll y) : x(x), y(y) {}
+	point() {}
 	double norm2() { 
         return *this * *this;
     }

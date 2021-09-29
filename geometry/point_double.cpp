@@ -9,8 +9,8 @@ const ld EPS = 1e-9;
 
 struct point { 
 	ld x, y;
-	point(ld x, ld y) : x(x), y(y){}
-	point(){}
+	point(ld x, ld y) : x(x), y(y) {}
+	point() {}
 	double norm2() { 
         return *this * *this;
     }
