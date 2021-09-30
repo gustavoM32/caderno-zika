@@ -1,7 +1,7 @@
-/* Computes the kmp automata. The i-th state of this automata corresponds
- * to any string which its longest suffix that is a prefix of string s is
- * s[0, i]. The entry kmp[i][j] of the matrix corresponds to the resulting
- * state of transitioning from state i with character START + j
+/* Computes the kmp automata. The i-th state of this automata corresponds  to any string 
+ * which its longest suffix that is a prefix of string has length i. The entry kmp[i][j] 
+ * corresponds to the resulting state of transitioning from state i with character 
+ * START + j.
  *
  * START - first character of the alphabet 
  * ALPH - alphabet size
