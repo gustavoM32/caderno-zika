@@ -25,7 +25,7 @@ struct kmpAutomata {
 		return kmp[i][j] = ans;
 	}
 
-	kmpAutomata(string _s) s(_s) {
+	kmpAutomata(string _s) : s(_s) {
 		int n = sz(s);
 		int k = 0;
 		for(int i = 1; i < n; i++){
