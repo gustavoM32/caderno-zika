@@ -66,7 +66,7 @@ bool collinear(point a, point b, point c) {
 // If they are parallel, returns 1 if they have the same direction 
 // and returns -1 otherwise
 int paral(point a, point b) { 
-    if(a ^ b != 0) return 0;
+    if((a ^ b) != 0) return 0;
     if((a.x > 0) == (b.x > 0) && (a.y > 0) == (b.y > 0))
         return 1;
     return -1;

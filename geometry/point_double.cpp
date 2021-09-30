@@ -8,16 +8,16 @@ typedef long double ld;
 const ld EPS = 1e-9;
 
 struct point { 
-	ld x, y;
-	point(ld x, ld y) : x(x), y(y) {}
-	point() {}
-	double norm2() { 
+    ld x, y;
+    point(ld x, ld y) : x(x), y(y) {}
+    point() {}
+    double norm2() { 
         return *this * *this;
     }
     double norm() {
         return sqrt(norm2());
     }
-	bool operator==(const point& other) const {
+    bool operator==(const point& other) const {
         return abs(x - other.x) < EPS && abs(y - other.y) < EPS;
     }
     point operator+(const point& other) const {
@@ -35,17 +35,17 @@ struct point {
     ld operator*(const point& other) const {
         return x*other.x + y*other.y;
     }
-	ld operator^(const point& other) const { // cross product
+    ld operator^(const point& other) const { // cross product
         return x*other.y - y*other.x;
     }
-	bool operator<(const point& other) const { // for sweep line
-		return x < other.x - EPS || (abs(x - other.x) < EPS && y < other.y - EPS);
+    bool operator<(const point& other) const { // for sweep line
+        return x < other.x - EPS || (abs(x - other.x) < EPS && y < other.y - EPS);
     }
-	point rotate(point r) {
+    point rotate(point r) {
         return point(*this ^ r, *this * r);
     }
     point rotate(ld ang) {
-        return rotate(sin(ang), cos(ang));
+        return rotate(point(sin(ang), cos(ang)));
     }
 };
 point ccw90(1, 0);
@@ -79,7 +79,7 @@ bool collinear(point a, point b, point c) {
 // If they are parallel, returns 1 if they have the same direction 
 // and returns -1 otherwise
 int paral(point a, point b) { 
-    if(a ^ b != 0) return 0;
+    if((a ^ b) != 0) return 0;
     if((a.x > EPS) == (b.x > EPS) && (a.y > EPS) == (b.y > EPS))
         return 1;
     return -1;

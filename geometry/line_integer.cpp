@@ -9,10 +9,10 @@
  */
 
 struct line {
-	point p, q;
-	line(point p, point q) : p(p), pq(q) {}
-	line() {}
-	bool has(point r) {
+    point p, q;
+    line(point p, point q) : p(p), q(q) {}
+    line() {}
+    bool has(const point& r) const {
         return paral((r - p), (q - p));
     }
 	bool operator==(const line& other) const { // assumes that direction does not matter
@@ -27,7 +27,7 @@ struct line {
             && (min(p.x, q.x) <= r.x && r.x <= max(p.x, q.x))
             && (min(p.y, q.y) <= r.y && r.y <= max(p.y, q.y));
     }
-	line rotate(point r) { // rotates segment pivoted in p
+    line rotate(point r) { // rotates segment pivoted in p
         return line(p, p + (q - p).rotate(r));
     }
 };

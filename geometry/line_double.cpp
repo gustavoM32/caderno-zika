@@ -10,13 +10,13 @@
  */
 
 struct line {
-	point p, q;
-	line(point p, point q) : p(p), pq(q) {}
-	line() {}
-	bool has(point r) {
+    point p, q;
+    line(point p, point q) : p(p), q(q) {}
+    line() {}
+    bool has(point r) {
         return paral((r - p), (q - p));
     }
-	bool operator==(const line& other) const { // assumes that direction does not matter
+    bool operator==(const line& other) const { // assumes that direction does not matter
         return has(other.p) && has(other.q);
     }
     bool isVert() {
@@ -26,7 +26,7 @@ struct line {
         point q_vec = q - p, r_vec = r - p;
         return p + q_vec * (q_vec * r_vec / q_vec.norm2());
     }
-    ld dist(pt r) {
+    ld dist(point r) {
         return (r - proj(r)).norm();
     }
     // the following operations are for segments only
@@ -35,8 +35,11 @@ struct line {
             && (min(p.x, q.x) < r.x + EPS && r.x < max(p.x, q.x) + EPS)
             && (min(p.y, q.y) < r.y + EPS && r.y < max(p.y, q.y) + EPS);
     }
-	line rotate(auto a) { // rotates segment pivoted in p
-        return line(p, p + (q - p).rotate(a));
+    line rotate(point r) { // rotates segment pivoted in p
+        return line(p, p + (q - p).rotate(r));
+    }
+    line rotate(ld ang) { // rotates segment pivoted in p by angle
+        return line(p, p + (q - p).rotate(ang));
     }
 };
 
