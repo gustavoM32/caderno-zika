@@ -10,7 +10,7 @@ void kmp(string& s) {
 	int n = sz(s), k = 0;
 	for(int i = 1; i < n; i++){
 		while(k && s[i] != s[k])
-            k = pi[k-1];
+			k = pi[k-1];
 		if(s[i] == s[k]) k++;
 		pi[i] = k;
 	}
