@@ -13,7 +13,7 @@ struct line {
     point p, q;
     line(point p, point q) : p(p), q(q) {}
     line() {}
-    bool has(point r) {
+    bool has(point r) const {
         return paral((r - p), (q - p));
     }
     bool operator==(const line& other) const { // assumes that direction does not matter
