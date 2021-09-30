@@ -5,9 +5,9 @@
  * ch - convex hull of `p` in counter-clockwise order.
  */
 
-void convexHull(vector<point> p) {
+vector<point> convexHull(vector<point> p) {
     int n = sz(p);
-	sort(p, p + n);
+	sort(p.begin(), p.end());
 	vector<point> low, up;
 	for(int i = 0; i < n; i++) {
 		while(sz(up) >= 2 && !right(up[sz(up)-2], up.back(), p[i]))
