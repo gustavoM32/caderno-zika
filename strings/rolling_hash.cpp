@@ -35,7 +35,7 @@ void prec() {
 			pot[i][k] = mul(pot[i-1][k], P[k]);
 }
  
-struct hsh{
+struct hsh {
 	array<ll, K> suf[N];
 	hsh() {}
 	hsh(string &s) {
