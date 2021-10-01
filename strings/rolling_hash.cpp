@@ -36,18 +36,19 @@ void prec() {
 }
  
 struct hsh {
-	array<ll, K> suf[N];
+	vector<array<ll, K> > suf;
 	hsh() {}
-	hsh(string &s) {
-		for(int i = sz(s)-1; i >= 0; i--)
+	hsh(string &s) : suf(sz(s) + 1) {
+		for(int k = 0; k < K; k++) suf[sz(s)][k] = 0;
+		for(int i = sz(s) - 1; i >= 0; i--)
 			for(int k = 0; k < K; k++)
-				suf[i][k] = sum(mul(suf[i+1][k], P[k]), s[i] - START + 1);
+				suf[i][k] = sum(mul(suf[i + 1][k], P[k]), s[i] - START + 1);
 	}
 	// Queries the hashing of the substring s[l, r)
 	array<ll, K> que(int l, int r) {
 		array<ll, K> cur;
 		for(int k = 0; k < K; k++)
-			cur[k] = sum(suf[l][k], MOD - mul(suf[r][k], pot[r-l][k]));
+			cur[k] = sum(suf[l][k], MOD - mul(suf[r][k], pot[r - l][k]));
 		return cur;
 	}
 };
