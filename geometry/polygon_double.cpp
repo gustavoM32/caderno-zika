@@ -47,7 +47,7 @@ struct polygon {
             point vec_i = p[(i+1)%n] - p[i];
             while((vec_i ^ (p[(j+1)%n] - p[j])) > EPS) 
                 j = (j + 1) % n;
-            ans = max(ans, p[i].dist(p[j])); // Example with polygon diameter
+            ans = max(ans, dist(p[i], p[j])); // Example with polygon diameter
         }
         return ans;
     }
