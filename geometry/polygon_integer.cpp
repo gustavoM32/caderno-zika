@@ -24,6 +24,9 @@ struct polygon {
             acum += p[i] ^ p[(i + 1) % n];
         return acum;
     }
+    ll area2() { // O(n)
+        return abs(orientation());
+    }
     void turnCcw() { // O(n)
         if(orientation() < 0)
             reverse(p.begin(), p.end());
@@ -47,5 +50,38 @@ struct polygon {
             ans = max(ans, dist2(p[i], p[j])); // Example with polygon diameter squared
         }
         return ans;
+    }
+    int extreme(const function<bool(point, point)> &cmp) {
+        auto isExtreme = [&](int i, bool& curDir) -> bool {
+            curDir = cmp(p[(i + 1) % n], p[i]);
+            return !cmp(p[(i + n - 1) % n], p[i]) && !curDir;
+        };
+        bool lastDir, curDir;
+        if(isExtreme(0, lastDir)) return 0;
+        int lo = 0, hi = n; 
+        while(lo + 1 < hi) {
+            int m = (lo + hi) >> 1;
+            if(isExtreme(m, curDir)) return m;
+            bool relDir = cmp(p[m], p[lo]);
+            if((!lastDir && curDir) || (lastDir == curDir && relDir == curDir)) {
+                lo = m;
+                lastDir = curDir;
+            } else hi = m;
+        }
+        return lo;
+    }
+    pair<int, int> tangent(point q) { // O(log n) for convex polygon in ccw orientation
+        // Finds the indices of the two tangents to an external point q
+        auto leftTangent = [&](point r, point s) -> bool {
+            return right(q, r, s);
+        };
+        auto rightTangent = [&](point r, point s) -> bool {
+            return left(q, r, s);
+        };
+        return {extreme(leftTangent), extreme(rightTangent)};
+    }
+    int maximize(point v) { // O(log n) for convex polygon in ccw orientation
+        // Finds the extreme point in the direction of the vector
+        return extreme([&](point p, point q) {return p * v > q * v;});
     }
 };
