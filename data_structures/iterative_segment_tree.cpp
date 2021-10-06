@@ -45,8 +45,7 @@ struct segTree {
 
     // add x to position i
     void update(int i, ll x) {
-        i += n;
-        st[i] += x;
+        st[i += n] += x;
         while (i > 1) {
             i >>= 1;
             st[i] = combine(st[i << 1], st[i << 1 | 1]);
@@ -56,14 +55,9 @@ struct segTree {
     // query from l to r, inclusive
     ll query(int l, int r) {
         ll resl = 0, resr = 0;
-        l += n;
-        r += n+1;
-        while (l < r) {
+        for (l += n, r += n+1; l < r; l >>= 1, r >>= 1) {
             if (l & 1) resl = combine(resl, st[l++]);
             if (r & 1) resr = combine(st[--r], resr);
-
-            l >>= 1;
-            r >>= 1;
         }
 
         return combine(resl, resr);
