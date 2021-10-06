@@ -32,7 +32,7 @@ struct line {
     }
 };
 
-bool paraline(line a, line b) {
+int paraline(line a, line b) {
     return paral(a.q - a.p, b.q - b.p);
 }
 
