@@ -84,4 +84,18 @@ struct polygon {
         // Finds the extreme point in the direction of the vector
         return extreme([&](point p, point q) {return p * v > q * v;});
     }
+    void normalize() { // p[0] becomes the lowest leftmost point 
+        rotate(p.begin(), min_element(p.begin(), p.end()), p.end());
+    }
+    polygon	operator +(polygon& other) { // Minkowsky sum
+        vector<point> sum;
+        normalize();
+        other.normalize();
+        for(ll i = 0, j = 0, dir; i < n || j < other.n; i += dir >= 0, j += dir <= 0) {
+            sum.pb(p[i % n] + other.p[j % other.n]);
+            dir = (p[(i + 1) % n] - p[i % n]) 
+                    ^ (other.p[(j + 1) % other.n] - other.p[j % other.n]);
+        }
+        return polygon(sum);
+    }    
 };
