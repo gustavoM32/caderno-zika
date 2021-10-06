@@ -50,7 +50,7 @@ bool paraline(line a, line b) {
 point intersect(line a, line b) {
     if(paraline(a, b)) return point(INF, INF);
     point v_a = (a.q - a.p), v_b = (b.q - b.p);
-    ll c_a = v_a ^ a.p, c_b = v_b ^ b.p;
+    ld c_a = v_a ^ a.p, c_b = v_b ^ b.p;
     return (v_b*c_a - v_a*c_b) / (v_a ^ v_b);
 }
 
