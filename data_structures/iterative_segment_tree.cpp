@@ -9,7 +9,7 @@ struct segTree {
     int n;
     vector<ll> st;
 
-    // combine two elements
+    // combine two elements, doesn't need to be commutative
     inline ll combine(ll a, ll b) {
         return a + b;
     }
@@ -45,27 +45,21 @@ struct segTree {
 
     // add x to position i
     void update(int i, ll x) {
-        i += n;
-        st[i] += x;
+        st[i += n] += x;
         while (i > 1) {
-            st[i >> 1] = combine(st[i], st[i ^ 1]);
             i >>= 1;
+            st[i] = combine(st[i << 1], st[i << 1 | 1]);
         }
     }
 
     // query from l to r, inclusive
     ll query(int l, int r) {
-        ll res = 0;
-        l += n;
-        r += n+1;
-        while (l < r) {
-            if (l & 1) res = combine(res, st[l++]);
-            if (r & 1) res = combine(res, st[--r]);
-
-            l >>= 1;
-            r >>= 1;
+        ll resl = 0, resr = 0;
+        for (l += n, r += n+1; l < r; l >>= 1, r >>= 1) {
+            if (l & 1) resl = combine(resl, st[l++]);
+            if (r & 1) resr = combine(st[--r], resr);
         }
 
-        return res;
+        return combine(resl, resr);
     }
 };
