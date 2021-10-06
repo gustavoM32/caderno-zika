@@ -87,7 +87,7 @@ struct polygon {
     void normalize() { // p[0] becomes the lowest leftmost point 
         rotate(p.begin(), min_element(p.begin(), p.end()), p.end());
     }
-    polygon	operator +(polygon& other) { // Minkowsky sum
+    polygon operator+(polygon& other) { // Minkowsky sum
         vector<point> sum;
         normalize();
         other.normalize();
