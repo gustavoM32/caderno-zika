@@ -33,13 +33,13 @@ struct polygon {
     }
     bool has(point q) { // O(log n). The polygon must be convex and in ccw order
         if(right(p[0], p[1], q) || left(p[0], p[n-1], q)) return 0;
-        int lo = 0, hi = n;
+        int lo = 1, hi = n;
         while(lo + 1 < hi) {
             int mid = (lo + hi) >> 1;
-            if(left(p[0], p[mid], q)) lo = mid;
+            if(!right(p[0], p[mid], q)) lo = mid;
             else hi = mid;
         }
-        return !right(p[lo], p[(lo + 1) % n], q);
+        return hi != n ? !right(p[lo], p[hi], q) : dist2(p[0], q) <= dist2(p[0], p[n-1]);
     }
     ll calipers() { // O(n). The polygon must be convex and in ccw order.
         ll ans = 0;
