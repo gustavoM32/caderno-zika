@@ -12,7 +12,7 @@ struct circle {
     circle() {}
     circle(point o, ld r) : o(o), r(r) {}
     bool has(point p) { 
-        return (o - p).norm() < r + EPS;
+        return (o - p).norm2() < r*r + EPS;
     }
     vector<point> operator/(circle c) { // Intersection of circles.
         vector<point> inter;                   // The points in the output are in ccw order.
