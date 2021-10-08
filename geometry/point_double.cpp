@@ -47,6 +47,10 @@ struct point {
     point rotate(ld ang) {
         return rotate(point(sin(ang), cos(ang)));
     }
+    ld angle(point& other) { // only works for angles in the range [0, PI]
+        ld cos_val = min(1, max(-1, *this * other / (norm() * other.norm())));
+        return acos(cos_val);
+    }
 };
 point ccw90(1, 0);
 point cw90(-1, 0);
