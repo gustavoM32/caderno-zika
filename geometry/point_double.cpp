@@ -11,10 +11,10 @@ struct point {
     ld x, y;
     point(ld x, ld y) : x(x), y(y) {}
     point() {}
-    double norm2() { 
+    ld norm2() { 
         return *this * *this;
     }
-    double norm() {
+    ld norm() {
         return sqrt(norm2());
     }
     bool operator==(const point& other) const {
