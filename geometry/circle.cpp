@@ -14,16 +14,16 @@ struct circle {
         return (o - p).norm() < r + EPS;
     }
     vector<point> operator/(circle c) { // Intersection of circles.
-        vector<pt> s;                   // The points in the output are in ccw order.
+        vector<point> inter;                   // The points in the output are in ccw order.
         ld d = (o - c.o).norm();
         if(r + c.r < d - EPS || d + min(r, c.r) < max(r, c.r) - EPS)
             return {};
         ld x = (r*r - c.r*c.r + d*d) / (2*d);
         ld y = sqrt(r*r - x*x);
         point v = (c.o - o) / d;
-        s.pb(o + v*x + v.rotate(cw90)*y);
-        if(y > EPS) s.pb(o + v*x + v.rotate(ccw90)*y);
-        return s;
+        inter.pb(o + v*x + v.rotate(cw90)*y);
+        if(y > EPS) inter.pb(o + v*x + v.rotate(ccw90)*y);
+        return inter;
     }
     vector<point> tang(point p){
         ld d = sqrt((p - o).norm2() - r*r);
