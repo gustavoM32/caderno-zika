@@ -25,7 +25,7 @@ struct circle {
         if(y > EPS) s.pb(o + v*x + v.rotate(ccw90)*y);
         return s;
     }
-    vector<point> tang(pt p){
+    vector<point> tang(point p){
         ld d = sqrt((p - o).norm2() - r*r);
         return *this / circle(p, d);
     }
