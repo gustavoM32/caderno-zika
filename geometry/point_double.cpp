@@ -48,7 +48,7 @@ struct point {
         return rotate(point(sin(ang), cos(ang)));
     }
     ld angle(point& other) { // only works for angles in the range [0, PI]
-        ld cos_val = min(1, max(-1, *this * other / (norm() * other.norm())));
+        ld cos_val = min(1.0L, max(-1.0L, *this * other / (norm() * other.norm())));
         return acos(cos_val);
     }
 };
