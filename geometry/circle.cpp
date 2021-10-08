@@ -9,6 +9,7 @@ const ld PI = acos(-1);
 
 struct circle {
     point o; ld r;
+    circle() {}
     circle(point o, ld r) : o(o), r(r) {}
     bool has(point p) { 
         return (o - p).norm() < r + EPS;
