@@ -8,7 +8,7 @@ struct point {
 	ll x, y;
 	point(ll x, ll y) : x(x), y(y) {}
 	point() {}
-	double norm2() { 
+	ll norm2() { 
         return *this * *this;
     }
 	bool operator==(const point& other) const {
