@@ -51,11 +51,11 @@ struct hld {
         ll ans = -INF;
         while(rt[u] != rt[v]){
             if(d[rt[u]] > d[rt[v]]) swap(u, v);
-            ans = max(ans, st.que(id[rt[v]], id[v] + 1));
+            ans = max(ans, st.query(id[rt[v]], id[v] + 1));
             v = p[rt[v]];
         }
         int a = id[u], b = id[v];
-        ans = max(ans, st.que(min(a, b) + for_edge, max(a, b) + 1));
+        ans = max(ans, st.query(min(a, b) + for_edge, max(a, b) + 1));
         return ans;
     }    
 }
