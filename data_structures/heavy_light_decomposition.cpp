@@ -58,4 +58,4 @@ struct hld {
         ans = max(ans, st.query(min(a, b) + for_edge, max(a, b) + 1));
         return ans;
     }    
-}
+};
