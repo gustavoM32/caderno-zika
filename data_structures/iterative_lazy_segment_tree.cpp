@@ -13,7 +13,7 @@ const ll NEUT = -INF;
 
 struct node {
     ll val;
-    node() : val(NEUT) {}
+    node() : val(0) {} // initial value
     node(ll val) : val(val) {}
     // combine two nodes
     node operator+(const node& other) {
@@ -69,11 +69,11 @@ struct segTree {
         l += n, r += n;
         push(l);
         push(r - 1);
-        node ans;
+        node ans(NEUT);
         for(; l < r; l >>= 1, r >>= 1){
             if(l & 1) ans = ans + t[l++];
             if(r & 1) ans = ans + t[--r];
         }
-        return node;
+        return ans;
     }
 };
