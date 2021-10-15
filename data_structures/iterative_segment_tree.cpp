@@ -1,6 +1,6 @@
 /* Simple iterative segment tree, with point update and range queries.
  * 
- * The operator needs the be commutative for this implementation.
+ * The operator needs to be commutative for this implementation.
  *
  * Time complexity: O(n) for building and O(log n) for updates and queries.
  * Space complexity: O(n)
