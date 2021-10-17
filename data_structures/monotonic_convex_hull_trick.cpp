@@ -10,24 +10,20 @@
 
 typedef long double ld;
 
-struct chullTrick{
+struct chullTrick {
 	deque<pair<ll, ll> > lines;
-
-    ll eval(ll x, pair<ll, ll> line){
+    ll eval(ll x, pair<ll, ll> line) {
         return line.first*x + line.second;
     }
-
-    ld inter(pair<ll, ll> a, pair<ll, ll> b){
+    ld inter(pair<ll, ll> a, pair<ll, ll> b) {
         return ld(b.second - a.second) / (a.first - b.first);
     }
-
-	ll que(ll x){
+	ll que(ll x) {
 		while(sz(lines) >= 2 && eval(x,lines[0]) <= eval(x,lines[1]))
 			lines.pop_front();
 		return eval(x, lines[0]);
 	}
-
-	void insert(pair<ll, ll> nline){
+	void insert(pair<ll, ll> nline) {
 		while(sz(lines) >= 2 && inter(nline,lines[sz(lines)-2]) < inter(lines.back(),lines[sz(lines)-2]) + EPS)
 			lines.pop_back();
 		if(sz(lines) == 1 && lines.back().first == nline.first && lines.back().second < nline.second)
