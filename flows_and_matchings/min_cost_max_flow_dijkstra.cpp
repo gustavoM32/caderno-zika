@@ -12,6 +12,10 @@
  * - getFlow()
  *   returns a pair of integers in which the first value is the maximum flow and the
  *   second is the minimum cost to achieve this flow.
+ *
+ * Complexity: There are two upper bounds to the time complexity of getFlow
+ *              - O(max_flow * (E log V))
+ *              - O(V * E * (E log V))
  */
 
 const ll INF = 1LL << 60;
