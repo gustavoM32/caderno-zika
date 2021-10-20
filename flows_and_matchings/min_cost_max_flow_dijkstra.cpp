@@ -1,4 +1,5 @@
-/* Solves the minimum-cost maximum-flow problem.
+/* Solves the minimum-cost maximum-flow problem using dijkstra for finding the incremental
+ * shortest paths.
  *
  * Constructor:
  * mcf(n, s, t)
@@ -60,7 +61,7 @@ struct mcf {
 			for(int e = first[u]; e != -1; e = g[e].next) {
 				int v = g[e].to;
 				ll ndist = d + g[e].cost;
-				if(g[e].cap > 0 && dist[v] > ndist) {
+				if(g[e].cap > 0 && ndist < dist[v]) {
 					dist[v] = ndist;
 					q.push({-ndist, v});
 					prev[v] = e;
