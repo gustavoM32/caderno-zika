@@ -29,13 +29,19 @@ int main() {
     
   Gauss g(n, m, a);
 
-  vector<double> ans(n);
-  g.solve(ans);
+  vector<double> ans;
+  int s = g.solve(ans);
 
-  for (int i = 0; i < n; i++) {
-    cout << ans[i] << " ";
+  if (s == 0) cout << "no solution\n";
+  else {
+    if (s == 1) cout << "unique solution\n";
+    else cout << "multiple solutions\n";
+
+    for (int i = 0; i < m; i++) {
+      cout << ans[i] << " ";
+    }
+    cout << "\n";
   }
-  cout << "\n";
 
   return 0;
 }

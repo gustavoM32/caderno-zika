@@ -24,7 +24,7 @@ struct Gauss {
         if (abs(a[i][col]) > abs(a[sel][col])) sel = i;
       }
 
-      if (abs(a[sel][col]) < EPS ) continue;
+      if (abs(a[sel][col]) < EPS) continue;
 
       swap(a[sel], a[row]);
 
