@@ -3,7 +3,7 @@
  * queries are done only in increasing/decreasing x-coordinates.
  *
  * This template assumes non-decreasing slopes in inserted lines
- * and queries in non-decreasing x-coordinates
+ * and queries of maximization in non-decreasing x-coordinates.
  *
  * Complexity: amortized O(1) for each insertion and query
  */
