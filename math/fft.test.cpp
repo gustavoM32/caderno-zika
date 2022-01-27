@@ -1,4 +1,6 @@
-// https://codeforces.com/contest/632/problem/E
+#define PROBLEM "https://codeforces.com/contest/632/problem/E"
+#define IGNORE // incompatible judge
+
 #include <bits/stdc++.h>
 using namespace std;
 
