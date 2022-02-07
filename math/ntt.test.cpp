@@ -1,4 +1,4 @@
-// https://codeforces.com/contest/1096/problem/G
+// https://codeforces.com/contest/1613/problem/F
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -13,121 +13,107 @@ using namespace std;
 #define db cout << "Debug" << "\n";
 #define dbg(x)  cout << #x << " = " << x << "\n"
 
-// MOD - 1 precisa ser pot de 2.
-// esse template somente faz exponenciacao de um polinomio
 const int MOD = 998244353;
-const int me = 21;
-const int ms = 1 << me;
  
-int fexp(int x, int e, int mod = MOD) {
-    int ans = 1;
-    x %= mod;
-    for(; e > 0; e /= 2) {
-        if(e & 1) {
-            ans = ans * x % mod;
+namespace NTT {
+    const long long mod = 998244353;
+    const long long root = 15311432;
+    const long long root_1 = 469870224;
+    const long long root_pw = 1 << 23;
+ 
+    long long fastxp(long long n, long long e){
+        long long ans = 1, pwr = n;
+        while(e){
+            if(e%2)  ans = ans * pwr % MOD;
+            e /= 2;
+            pwr = pwr * pwr % MOD;
         }
-        x = x * x % mod;
+        return ans % MOD;
     }
-    return ans;
-}
  
-//is n primitive root of p ?
-bool test(int x, int p) {
-    int m = p - 1;
-    for(int i = 2; i * i <= m; ++i) if(m % i == 0) {
-        if(fexp(x, i, p) == 1) return false;
-        if(fexp(x, m / i, p) == 1) return false;
-    }
-    return true;
-}
  
-//find the largest primitive root for p
-int search(int p) {
-    for(int i = p - 1; i >= 2; --i) if(test(i, p)) return i;
-    return -1;
-}
+    void fft(vector<long long> & a, bool invert) {
+        long long n = a.size();
  
-#define add(x, y, mod) (x+y>=mod?x+y-mod:x+y)
+        for (long long i = 1, j = 0; i < n; i++) {
+            long long bit = n >> 1;
+            for (; j & bit; bit >>= 1)
+                j ^= bit;
+            j ^= bit;
  
-const int gen = search(MOD);
-int bits[ms], r[ms + 1];
- 
-void pre(int n) {
-    int LOG = 0;
-    while(1 << (LOG + 1) < n) {
-        LOG++;
-    }
-    for(int i = 1; i < n; i++) {
-        bits[i] = (bits[i >> 1] >> 1) | ((i & 1) << LOG);
-    }
-}
- 
-void pre(int n, int root, int mod) {
-    pre(n);
-    r[0] = 1;
-    for(int i = 1; i <= n; i++) {
-        r[i] = (int) r[i - 1] * root % mod;
-    }
-}
- 
-std::vector<int> fft(std::vector<int> a, int mod, bool inv = false) {
-    int root = gen;
-    if(inv) {
-        root = fexp(root, mod - 2, mod);
-    }
-    int n = a.size();
-    root = fexp(root, (mod - 1) / n, mod);
-    pre(n, root, mod);
-    for(int i = 0; i < n; i++) {
-        int to = bits[i];
-        if(i < to) {
-            std::swap(a[i], a[to]);
+            if (i < j) swap(a[i], a[j]);
         }
-    }
-    for(int len = 1; len < n; len *= 2) {
-        for(int i = 0; i < n; i += len * 2) {
-            int cur_root = 0;
-            int delta = n / (2 * len);
-            for(int j = 0; j < len; j++) {
-                int u = a[i + j], v = (int) a[i + j + len] * r[cur_root] % mod;
-                a[i + j] = add(u, v, mod);
-                a[i + j + len] = add(u, mod - v, mod);
-                cur_root += delta;
+ 
+        for (long long len = 2; len <= n; len <<= 1) {
+            long long wlen = invert ? root_1 : root;
+            for (long long i = len; i < root_pw; i <<= 1)
+                wlen = (long long)(1LL * wlen * wlen % mod);
+ 
+            for (long long i = 0; i < n; i += len) {
+                long long w = 1;
+                for (long long j = 0; j < len / 2; j++) {
+                    long long u = a[i+j], v = a[i+j+len/2] * w % mod;
+                    a[i+j] = u + v < mod ? u + v : u + v - mod;
+                    a[i+j+len/2] = u - v >= 0 ? u - v : u - v + mod;
+                    w = (long long)(1LL * w * wlen % mod);
+                }
             }
         }
+ 
+        if (invert) {
+            long long n_1 = fastxp(n, mod - 2);
+            for (long long & x : a) x = x * n_1 % mod;
+        }
     }
-    if(inv) {
-        int rev = fexp(n, mod-2, mod);
-        for(int i = 0; i < n; i++)
-            a[i] = (int) a[i] * rev % mod;
+ 
+    vector<long long> multiply(vector<long long> &a, vector<long long> &b) {
+        vector<long long> fa(a.begin(), a.end()), fb(b.begin(), b.end());
+        long long sz = a.size() + b.size() - 1, n = 1;
+        while (n < sz) n <<= 1;
+ 
+        fa.resize(n), fb.resize(n);
+        fft(fa, 0), fft(fb, 0);
+        for (long long i = 0; i < fa.size(); i++) fa[i] = fa[i] * fb[i] % mod;
+ 
+        fft(fa, 1);
+        fa.resize(sz);
+        return fa;
     }
-    return a;
+};
+
+int n, degree[300010];
+
+vector<int> divide_conquer(int ini, int fim){
+    if(ini == fim) return {1, degree[ini]};
+    
+    int meio = (ini + fim) / 2;
+    auto esq = divide_conquer(ini, meio);
+    auto dir = divide_conquer(meio + 1, fim);
+
+    return NTT::multiply(esq, dir);
 }
 
-
-int n, k;
-
 void solve(){
-    cin >> n >> k;
-    vector<int> poly(ms);
-    for(int i = 1; i <= k; i++){
-        int x; cin >> x;
-        poly[x] = 1;
+    cin >> n;
+    for(int i = 1; i < n; i++){
+        int a, b; cin >> a >> b;
+        degree[a]++;
+        degree[b]++;
     }
+    for(int i = 2; i <= n; i++) degree[i]--;
 
-    // estou elevando poly a n/2
-    poly = fft(poly, MOD);
-    for(int i = 0; i < ms; i++) {
-        poly[i] = fexp(poly[i], n / 2, MOD);
-    }
-    poly = fft(poly, MOD, true);
+    // queremos fazer Produtorio (1 + x * degree[i])
 
-    int tot = 0;
-    for(auto u : poly){
-        int aux = u; aux *= u; aux %= MOD;
-        tot = (tot + aux) % MOD;
+    vector<int> fat(n + 10);
+    fat[0] = fat[1] = 1;
+    for(int i = 2; i <= n; i++) fat[i] = fat[i - 1] * i % MOD;
+
+    auto a = divide_conquer(1, n);
+    int ans = 0;
+    for(int i = 0, sinal = 1; i <= n; i++, sinal *= -1){
+        ans = (ans + sinal * a[i] * fat[n - i] % MOD + MOD) % MOD;
     }
-    cout << tot << "\n";
+    cout << ans << "\n";
 }
 
 signed main(){
