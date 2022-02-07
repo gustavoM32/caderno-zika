@@ -1,4 +1,6 @@
-// https://codeforces.com/contest/1613/problem/F
+#define PROBLEM "https://codeforces.com/contest/1613/problem/F"
+#define IGNORE // incompatible judge
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -103,7 +105,6 @@ void solve(){
     for(int i = 2; i <= n; i++) degree[i]--;
 
     // queremos fazer Produtorio (1 + x * degree[i])
-
     vector<int> fat(n + 10);
     fat[0] = fat[1] = 1;
     for(int i = 2; i <= n; i++) fat[i] = fat[i - 1] * i % MOD;
