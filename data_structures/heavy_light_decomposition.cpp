@@ -47,15 +47,19 @@ struct hld {
         st.update(max(id[u], id[v]), x);
     }
     // for queries on the edges of the path set for_edge to true
+    // this code assumes that the segment tree queries are right-exclusive
     int query(int u, int v, bool for_edge=false){
+        auto oper = (ll a, ll b) { // you probably will only need to change this
+            return max(a, b);
+        };
         ll ans = -INF;
         while(rt[u] != rt[v]){
             if(d[rt[u]] > d[rt[v]]) swap(u, v);
-            ans = max(ans, st.query(id[rt[v]], id[v] + 1));
+            ans = oper(ans, st.query(id[rt[v]], id[v] + 1));
             v = p[rt[v]];
         }
         int a = id[u], b = id[v];
-        ans = max(ans, st.query(min(a, b) + for_edge, max(a, b) + 1));
+        ans = oper(ans, st.query(min(a, b) + for_edge, max(a, b) + 1));
         return ans;
     }    
 };
