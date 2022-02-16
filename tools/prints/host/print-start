@@ -11,5 +11,6 @@ echo "Starting printer loop"
 
 echo $! > pid.txt
 
-echo info
+echo "To print a file, use the print-file command: ./print-file file.txt"
+echo "Prints will be available at https://linux.ime.usp.br/~gustavodmc/prints/"
 
