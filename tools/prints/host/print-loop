@@ -1,19 +1,21 @@
 #!/bin/bash
 
-MIN=60
+MIN=60 # seconds
 MAX=180
+MIN_MIN=$(echo "$MIN/60"|bc -l) # minutes
+
 MAX_TIME=20000
 DIR="$HOME/www/prints"
 TIME=0
 
 while [ $TIME -lt $MAX_TIME ]
 do
-	SECONDS_TO_PRINT=$(($MIN + $RANDOM % ($MAX - $MIN + 1)))
+	SECONDS_TO_PRINT=$(($RANDOM % ($MAX - $MIN + 1)))
 	TIME=$(($TIME + $SECONDS_TO_PRINT))
 	sleep $SECONDS_TO_PRINT
 	if [ "$(ls -A $DIR/.pending)" ]
 	then
-		mv $DIR/.pending/* $DIR
+		find $DIR/.pending/* -maxdepth 1 -mmin $MIN_MIN -type f -exec mv "{}" $DIR \;
 	fi
 done
 
