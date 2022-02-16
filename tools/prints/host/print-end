@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [ ! -f pid.txt ]
+then
+	echo "Printer is not running"
+	exit
+fi
+
+pid=$(cat pid.txt)
+
+echo "Stopping printer"
+kill -9 $pid
+
+rm pid.txt

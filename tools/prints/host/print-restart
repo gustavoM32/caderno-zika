@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ -f pid.txt ]
+then
+	./print-end
+fi
+
+./print-start

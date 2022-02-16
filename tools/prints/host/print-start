@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ -f pid.txt ]
+then
+	echo "Printer already running"
+	exit
+fi
+
+echo "Starting printer loop"
+./print-loop & disown
+
+echo $! > pid.txt
+
+echo info
+

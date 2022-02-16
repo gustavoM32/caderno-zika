@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [ -z $1 ]
+then
+	echo "Usage: $0 file"
+	exit
+fi
+
+if ! [ -f $1 ]
+then
+	echo "File '$1' does not exist"
+	exit
+fi
+
+echo "Printing '$1'..."
+vim $1 -c "syntax off | hardcopy > /tmp/printing.ps | q"
+
+OUT_NAME="$(basename "$1" | sed 's/\(.*\)\..*/\1/')_$(date +"%y%m%d_%I%M%S").pdf"
+
+ps2pdf /tmp/printing.ps "/tmp/$OUT_NAME"
+rm /tmp/printing.ps
+
+echo "Converted to PDF as '$OUT_NAME'! Sending to printer..."
+
+scp "/tmp/$OUT_NAME" gustavodmc@linux.ime.usp.br:./www/prints/.pending
+
+echo "Sent! File will be available shortly"
