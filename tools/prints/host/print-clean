@@ -1,0 +1,4 @@
+#!/bin/bash
+
+DIR="$HOME/www/prints"
+find $DIR ! -name '.pending' -type f -exec rm -f {} +
