@@ -1,5 +1,5 @@
 """ quick config
-set nu rnu sw=4 ts=4 ai
+set nu rnu sw=4 ts=4 ai ls=2
 
 """ reference
 
@@ -17,6 +17,9 @@ set tabstop=4
 
 " use the indentation of the current line when creating a new one (ai)
 set autoindent
+
+" constantly show the file name (ls)
+set laststatus=2
 
 "" not used
 
