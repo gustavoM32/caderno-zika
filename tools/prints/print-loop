@@ -1,0 +1,19 @@
+#!/bin/bash
+
+MIN=10 # seconds
+MAX=20
+MIN_MIN=$(printf '%.3f' "$(echo "$MIN/60" | bc)") # minutes
+
+MAX_TIME=20000
+DIR="$HOME/Dropbox/Maratona/prints"
+TIME=0
+
+while [ $TIME -lt $MAX_TIME ]
+do
+	SECONDS_TO_PRINT=$(($RANDOM % ($MAX - $MIN + 1)))
+	TIME=$(($TIME + $SECONDS_TO_PRINT))
+	sleep $SECONDS_TO_PRINT
+	find $DIR/.files-to-print/* -maxdepth 1 -mmin +$MIN_MIN -type f -exec ./print-file "{}" $DIR del \; &> /dev/null
+done
+
+./print-end
