@@ -1,7 +1,7 @@
 #!/bin/bash
 
-MIN=10 # seconds
-MAX=20
+MIN=60 # seconds
+MAX=180
 MIN_MIN=$(printf '%.3f' "$(echo "$MIN/60" | bc)") # minutes
 
 MAX_TIME=20000
