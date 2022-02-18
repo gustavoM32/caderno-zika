@@ -1,5 +1,5 @@
 #!/bin/bash
 
 DIR="$HOME/Dropbox/Maratona/prints"
-rm $DIR/*.pdf
-rm $DIR/.files-to-print/*
+rm $DIR/*.pdf &> /dev/null
+rm $DIR/.files-to-print/* &> /dev/null
