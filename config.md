@@ -1,24 +1,6 @@
-# ~/.bashrc
-```sh
-alias gdb="gdb --silent"
-alias mtime="/usr/bin/time -f '%C %Us %MKB"
-```
-
 # ~/.vimrc
 ```vim
 set nu rnu sw=4 ts=4 ai ls=2
-```
-
-# Makefile
-```Makefile
-c = g++ -Wall -std=c++17 -static -lm $< -o $*
-
-%: %.cpp
-	$c -g
-
-t%: %.cpp
-	$c -O2
-	@for i in $*.in*; do echo "\n== $$i ==" && $(mtime) ./$* < $$i; done
 ```
 
 # template.cpp
@@ -47,4 +29,17 @@ signed main() {
 	solve();
 	return 0;
 }
+```
+
+# Makefile
+```Makefile
+c = g++ -Wall -std=c++17 -static -lm $< -o $*
+mtime = /usr/bin/time -f '%C %Us %MKB
+
+%: %.cpp
+	$c -g
+
+t%: %.cpp
+	$c -O2
+	@for i in $*.in*; do echo "\n== $$i ==" && $(mtime) ./$* < $$i; done
 ```
