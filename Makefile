@@ -1,4 +1,8 @@
-%:
-	g++ -g -O2 -Wall -std=c++17 -static -lm -o $@ $@.cpp
-# TODO add commands to run with a test file
-# TODO add commands to debug
+c = g++ -Wall -std=c++17 -static -lm $< -o $*
+
+%: %.cpp
+	$c -g
+
+t%: %.cpp
+	$c -O2
+	@for i in $*.in*; do echo "\n== $$i ==" && $(mtime) ./$* < $$i; done
