@@ -1,5 +1,6 @@
-#include <bits/stdc++.h>
 #define PROBLEM "https://www.hackerrank.com/challenges/find-the-running-median/problem"
+/**********/
+#include <bits/stdc++.h>
 using namespace std;
 
 #define fastio ios_base::sync_with_stdio(0);cin.tie(0)
@@ -7,7 +8,7 @@ using namespace std;
 #define mp make_pair
 #define sz(x) int(x.size())
 #define trace(x) cerr << #x << ": " << x <<endl;
-
+/**********/
 typedef long long ll;
 
 const ll N = 1e6;

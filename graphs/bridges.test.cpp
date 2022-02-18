@@ -1,14 +1,15 @@
+#define PROBLEM "https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4648"
+#define IGNORE // incompatible judge
+/**********/
 #include <bits/stdc++.h>
 using namespace std;
 
-#define PROBLEM "https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4648"
-#define IGNORE
 #define fastio ios_base::sync_with_stdio(0);cin.tie(0)
 #define pb push_back
 #define mp make_pair
 #define sz(x) int(x.size())
 #define trace(x) cerr << #x << ": " << x <<endl;
-
+/**********/
 typedef long long ll;
 
 const ll N = 1e6;

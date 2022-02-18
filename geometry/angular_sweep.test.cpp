@@ -8,13 +8,13 @@ using namespace std;
 #define mp make_pair
 #define sz(x) int(x.size())
 #define trace(x) cerr << #x << ": " << x <<endl;
-
+/**********/
 typedef long long ll;
 
 const ll N = 1e6;
 const ll INF = 1LL << 61;
 const ll MOD = 1e9 + 7;
-/**********/
+
 #include "angular_sweep.cpp"
 
 point p[N];

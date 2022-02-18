@@ -1,6 +1,6 @@
 #define PROBLEM "https://codeforces.com/contest/632/problem/E"
 #define IGNORE // incompatible judge
-
+/**********/
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -14,8 +14,7 @@ using namespace std;
 #define infinite 9123456789
 #define db cout << "Debug" << "\n";
 #define dbg(x)  cout << #x << " = " << x << "\n"
-
-
+/**********/
 namespace FFT {
     using cd = complex<double>;
  

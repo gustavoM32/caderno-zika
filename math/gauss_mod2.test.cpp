@@ -1,4 +1,5 @@
-#define IGNORE
+#define IGNORE // incompatible judge
+/**********/
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -7,7 +8,7 @@ using namespace std;
 #define mp make_pair
 #define sz(x) int(x.size())
 #define trace(x) cerr << #x << ": " << x <<endl;
-
+/**********/
 typedef long long ll;
 const ll N = 512;
 const ll INF = 1ll << 61;
