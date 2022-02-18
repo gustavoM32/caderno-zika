@@ -1,3 +1,13 @@
+# bash
+
+```sh
+setxkbmap -option caps:escape
+
+alias gdb="gdb --silent"
+```
+
+# vim
+```vim
 " show line numbers (nu)
 set number
 
@@ -36,4 +46,4 @@ set ruler
 
 " show tabs and trailing spaces
 set list
-
+```
