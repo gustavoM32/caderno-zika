@@ -13,7 +13,9 @@ do
 	SECONDS_TO_PRINT=$(($RANDOM % ($MAX - $MIN + 1)))
 	TIME=$(($TIME + $SECONDS_TO_PRINT))
 	sleep $SECONDS_TO_PRINT
-	find $DIR/.files-to-print/* -maxdepth 1 -mmin +$MIN_MIN -type f -exec ./print-file "{}" $DIR del \; &> /dev/null
+	find $DIR/.files-to-print/* -maxdepth 1 -mmin +$MIN_MIN -type f \
+		-exec ./print-file "{}" $DIR del &> /dev/null \; \
+		-exec aplay beep.wav \;
 done
 
 ./print-end
