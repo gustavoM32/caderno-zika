@@ -28,6 +28,12 @@ set laststatus=2
 
 "" not used
 
+" show folds in a column (fdc)
+set foldcolumn=4
+
+" fold by indent (fdm)
+set foldmethod=indent
+
 " set vim colorscheme (colo)
 colorscheme delek
 
