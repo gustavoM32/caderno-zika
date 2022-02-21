@@ -39,7 +39,7 @@ signed main() {
 # Makefile
 ```Makefile
 c = g++ -Wall -std=c++17 -static -lm $< -o $*
-mtime = /usr/bin/time -f '%C %Us %MKB
+mtime = /usr/bin/time -f '%C %Us %MKB'
 
 %: %.cpp
 	$c -g
