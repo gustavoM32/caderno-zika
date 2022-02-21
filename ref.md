@@ -6,6 +6,12 @@
 * Remove gdb warranty message
 `alias gdb="gdb --silent"`
 
+* Copy file to clipboard
+`xclip -sel c < file`
+
+* Change keyboard language
+`setxkbmap us|br`
+
 # vim
 
 ## commands
