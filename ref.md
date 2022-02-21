@@ -1,34 +1,34 @@
 # bash
 
-```sh
-setxkbmap -option caps:escape
+* Make CapsLock work as Esc
+`setxkbmap -option caps:escape`
 
-alias gdb="gdb --silent"
-```
+* Remove gdb warranty message
+`alias gdb="gdb --silent"`
 
 # vim
 
 ## commands
 
-Compile the program. If there are any errors, the cursor is moved to the first one
-:make file
+* Compile the program. If there are any errors, the cursor is moved to the first one
+`:make file`
 
-Go to the next error
-:cnext
+* Go to the next error
+`:cnext`
 
-Show full error message
-:cc
+* Show full error message
+`:cc`
 
-Show the list of errors
-:clist
+* Show the list of errors
+`:clist`
 
-Split horizontaly
-:split
-Ctrl-w s
+* Split horizontaly
+`:split`
+`Ctrl-w s`
 
-Split verticaly
-:vsplit
-Ctrl-w v
+* Split verticaly
+`:vsplit`
+`Ctrl-w v`
 
 ## options
 
