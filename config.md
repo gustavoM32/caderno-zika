@@ -1,3 +1,8 @@
+# ~/.bashrc
+```sh
+setxkbmap -option caps:escape
+```
+
 # ~/.vimrc
 ```vim
 set nu rnu sw=4 ts=4 ai ls=2
