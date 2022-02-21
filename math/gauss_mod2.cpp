@@ -9,7 +9,8 @@ struct Gauss {
   array<int, M> pos;
   int rank = 0;
   vector<bitset<M>> a;
-
+  
+  // n equations, m-1 variables, last column is for coefficients
   Gauss(int n, int m, vector<bitset<M>> &a) : n(n), m(m), a(a) {
     pos.fill(-1);
   }
@@ -30,9 +31,10 @@ struct Gauss {
 
       pos[col] = row;
 
-      for (int i = row + 1; i < n; i++)
+      for (int i = row + 1; i < n; i++) {
         if (a[i][col])
           a[i] ^= a[row];
+      }
 
       ++row, ++rank;
     }

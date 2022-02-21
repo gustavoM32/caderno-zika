@@ -8,7 +8,8 @@ struct Gauss {
   int rank = 0;
   vector<vector<double>> a;
   const double EPS = 1e-9;
-
+  
+  // n equations, m-1 variables, last column is for coefficients
   Gauss(int n, int m, vector<vector<double>> &a) : n(n), m(m), a(a) {
     pos.assign(m, -1);
   }
@@ -30,7 +31,7 @@ struct Gauss {
 
       pos[col] = row;
 
-      for (int i = 0; i < n; i++)
+      for (int i = 0; i < n; i++) {
         if (i != row) {
           double mult = a[i][col] / a[row][col];
           a[i][col] = 0.0;
@@ -38,6 +39,7 @@ struct Gauss {
             a[i][j] -= a[row][j] * mult;
           }
         }
+      }
 
       ++row, ++rank;
     }

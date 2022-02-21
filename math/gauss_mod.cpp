@@ -29,6 +29,7 @@ struct Gauss {
   ll mod;
   vector<vector<ll>> a;
 
+  // n equations, m-1 variables, last column is for coefficients
   Gauss(int n, int m, ll mod, vector<vector<ll>> &a) : n(n), m(m), mod(mod), a(a) {
     pos.assign(m, -1);
   }
@@ -53,7 +54,7 @@ struct Gauss {
 
       pos[col] = row;
 
-      for (int i = 0; i < n; i++)
+      for (int i = 0; i < n; i++) {
         if (i != row) {
           ll mult = a[i][col] * inv(a[row][col], mod) % mod;
           a[i][col] = 0;
@@ -61,6 +62,7 @@ struct Gauss {
             a[i][j] = (a[i][j] + mod - a[row][j] * mult % mod) % mod;
           }
         }
+      }
 
       ++row, ++rank;
     }
