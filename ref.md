@@ -7,6 +7,31 @@ alias gdb="gdb --silent"
 ```
 
 # vim
+
+## commands
+
+Compile the program. If there are any errors, the cursor is moved to the first one
+:make file
+
+Go to the next error
+:cnext
+
+Show full error message
+:cc
+
+Show the list of errors
+:clist
+
+Split horizontaly
+:split
+Ctrl-w s
+
+Split verticaly
+:vsplit
+Ctrl-w v
+
+## options
+
 ```vim
 " show line numbers (nu)
 set number
