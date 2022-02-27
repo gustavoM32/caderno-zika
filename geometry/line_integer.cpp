@@ -30,6 +30,12 @@ struct line {
     line rotate(point r) { // rotates segment pivoted in p
         return line(p, p + (q - p).rotate(r));
     }
+    bool operator<(const line& other) const { // for Shamos-Hoey
+        if(p == other.p) return left(p, q, other.q);
+        if(!isVert() && (other.isVert() || p.x < other.p.x))
+            return left(p, q, other.p);
+        return left(p, other.q, other.p);
+    }
 };
 
 int paraline(line a, line b) {
