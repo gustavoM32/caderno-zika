@@ -41,7 +41,7 @@ struct segTree {
     }
 
     void resize(int s) {
-        n = s
+        n = s;
         st.assign(2*s, NEUT);
     }
 
