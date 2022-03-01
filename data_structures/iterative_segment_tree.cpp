@@ -8,6 +8,7 @@
 struct segTree {
     int n;
     vector<ll> st;
+    const ll NEUT = 0; // TODO define neutral element
 
     // combine two elements, doesn't need to be commutative
     inline ll combine(ll a, ll b) {
@@ -29,8 +30,8 @@ struct segTree {
 
     segTree() {}
 
-    // initialize with zeroes
-    segTree(int n) : n(n) {
+    // initialize with neutral elements
+    segTree(int n) {
         resize(n);
     }
 
@@ -39,8 +40,9 @@ struct segTree {
         build(v);
     }
 
-    void resize(int n) {
-        st.assign(2*n, 0);
+    void resize(int s) {
+        n = s
+        st.assign(2*s, NEUT);
     }
 
     // add x to position i
@@ -54,7 +56,7 @@ struct segTree {
 
     // query from l to r, inclusive
     ll query(int l, int r) {
-        ll resl = 0, resr = 0;
+        ll resl = NEUT, resr = NEUT;
         for (l += n, r += n+1; l < r; l >>= 1, r >>= 1) {
             if (l & 1) resl = combine(resl, st[l++]);
             if (r & 1) resr = combine(st[--r], resr);
