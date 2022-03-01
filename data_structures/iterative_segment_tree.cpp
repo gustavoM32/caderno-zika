@@ -12,7 +12,7 @@ struct segTree {
 
     // combine two elements, doesn't need to be commutative
     inline ll combine(ll a, ll b) {
-        return a + b;
+        return a + b; // TODO define merge operator
     }
 
     // build the tree with vector v
@@ -47,7 +47,7 @@ struct segTree {
 
     // add x to position i
     void update(int i, ll x) {
-        st[i += n] += x;
+        st[i += n] += x; // TODO change update operation
         while (i > 1) {
             i >>= 1;
             st[i] = combine(st[i << 1], st[i << 1 | 1]);

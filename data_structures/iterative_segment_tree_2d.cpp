@@ -46,12 +46,12 @@ struct segTree {
     void resize(int new_n, int new_m) {
         n = new_n;
         m = new_m;
-        st.assign(2*n, vector<ll>(2*m, NEUT)); // uses NEUT
+        st.assign(2*n, vector<ll>(2*m, NEUT));
     }
 
     // set position (x, y) to k
     void update(int x, int y, ll k) {
-        st[n + x][m + y] = k;
+        st[n + x][m + y] = k; // TODO change update operation
         
         for (int j = m + y; j > 1; j >>= 1)
             st[n + x][j >> 1] = combine(st[n + x][j], st[n + x][j ^ 1]);
@@ -62,7 +62,7 @@ struct segTree {
 
     // query in the rectangle (is, js) (ie, je), INCLUSIVE !!!
     ll query(int is, int js, int ie, int je) {
-        ll res = NEUT; // uses NEUT
+        ll res = NEUT;
 
         for (int i0 = n + is, i1 = n + ie + 1; i0 < i1; i0 >>= 1, i1 >>= 1) {
             ll t[2], q = 0;
