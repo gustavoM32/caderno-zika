@@ -31,6 +31,8 @@ struct line {
         return line(p, p + (q - p).rotate(r));
     }
     bool operator<(const line& other) const { // for Shamos-Hoey
+        // the case when q == other.p is such that we cosider this == other.
+        // that might give wrong answer, so be careful
         if(p == other.p) return left(p, q, other.q);
         if(!isVert() && (other.isVert() || p.x < other.p.x))
             return left(p, q, other.p);
