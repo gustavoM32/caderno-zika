@@ -31,7 +31,6 @@ int main() {
     
     for (int i = 0; i < q; i++) {
         int l, r; cin >> l >> r;
-        l--;
         cout << spt.que(l, r) << endl;
     }
 
