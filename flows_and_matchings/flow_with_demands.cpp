@@ -1,6 +1,7 @@
-/* Solves any flow problem with demands (also known as lower bounds) in the flow of
- * some edges.
- * It only does a graph transformation and applies the flow algorithm on it, thus this
+/* Finds *any* feasible solution (if exists) to a flow network with demands (also known as 
+ * lower bounds). It's possible to find the minimum flow solution doing binary search with
+ * a minor change.
+ * It only does a graph transformation and applies a max flow algorithm on it, thus this
  * template depends of another flow algorithm template. In this example, that algorithm
  * is minimum-cost maximum-flow, but that's not always necessary. Adapting this template
  * to other flow algorithms should be easy.
@@ -18,8 +19,9 @@
  *   be erased.
  *
  * - getFlow()
- *   finishes building the auxiliary graph and returns the result of applying the flow
- *   algorithm on it.
+ *   finishes building the auxiliary graph and returns the result of applying the max flow
+ *   algorithm on it. If and only if the maximum flow is exactly equal to the sum of all
+ *	 demands, then exists a feasible solution to this problem.
  *
  * Complexity: depends on the flow algorithm used, but take into account that this method
  *             adds O(V) edges to the network flow.
@@ -32,7 +34,8 @@ struct demands {
 	ll base = 0;
 	demands(int n, int _s, int _t) : n(n), s(n), t(n + 1), din(n, 0), dout(n, 0) {
 		g = mcf(n + 2, s, t);
-		g.addEdge(_t, _s, INF, 0);
+		g.addEdge(_t, _s, INF, 0); // for minimum solution, change INF according to the value
+								   // of the binary search
 	};
 	void addEdge(int u, int v, ll cap, ll dem, ll cost) {
 		din[v] += dem;
