@@ -10,6 +10,7 @@ vector<point> convexHull(vector<point> p) {
 	sort(p.begin(), p.end());
 	vector<point> low, up;
 	for(int i = 0; i < n; i++) {
+		if(i && p[i] == p[i - 1]) continue;
 		while(sz(up) >= 2 && !right(up[sz(up)-2], up.back(), p[i]))
 			up.pop_back();
 		up.pb(p[i]);
@@ -18,6 +19,7 @@ vector<point> convexHull(vector<point> p) {
 		low.pb(p[i]);
 	}
     vector<point> ch;
+	if(sz(low) == 1) return low;
 	for(int i = 0; i < sz(low) - 1; i++)
         ch.pb(low[i]);
 	for(int i = sz(up) - 1; i >= 1; i--)
