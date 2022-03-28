@@ -1,0 +1,21 @@
+* {
+	color: black !important;
+}
+
+p, code {
+	font-size: 11px;
+	line-height: 12px;
+}
+
+pre {
+	/* border: none; */
+	background-color: white;
+}
+
+code div {
+	padding: 0 !important;
+}
+
+li p {
+	margin: 0;
+}

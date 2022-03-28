@@ -1,14 +1,14 @@
-# ~/.bashrc
+## ~/.bashrc
 ```sh
 setxkbmap -option caps:escape
 ```
 
-# ~/.vimrc
+## ~/.vimrc
 ```vim
 set nu rnu sw=4 ts=4 ai ls=2
 ```
 
-# template.cpp
+## template.cpp
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
@@ -36,7 +36,7 @@ signed main() {
 }
 ```
 
-# Makefile
+## Makefile
 ```Makefile
 c = g++ -Wall -std=c++17 -static -lm $< -o $*
 mtime = /usr/bin/time -f '%C %Us %MKB'
