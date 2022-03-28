@@ -1,42 +1,42 @@
-# bash
+## bash
 
-* Make CapsLock work as Esc
+* Make CapsLock work as Esc  
 `setxkbmap -option caps:escape`
 
-* Remove gdb warranty message
+* Remove gdb warranty message  
 `alias gdb="gdb --silent"`
 
-* Copy file to clipboard
+* Copy file to clipboard  
 `xclip -sel c < file`
 
-* Change keyboard language
+* Change keyboard language  
 `setxkbmap us|br`
 
-# vim
+## vim
 
-## commands
+### commands
 
-* Compile the program. If there are any errors, the cursor is moved to the first one
+* Compile the program. If there are any errors, the cursor is moved to the first one  
 `:make file`
 
-* Go to the next error
+* Go to the next error  
 `:cnext`
 
-* Show full error message
+* Show full error message  
 `:cc`
 
-* Show the list of errors
+* Show the list of errors  
 `:clist`
 
-* Split horizontaly
+* Split horizontaly  
 `:split`
 `Ctrl-w s`
 
-* Split verticaly
+* Split verticaly  
 `:vsplit`
 `Ctrl-w v`
 
-## options
+### options
 
 ```vim
 " show line numbers (nu)
