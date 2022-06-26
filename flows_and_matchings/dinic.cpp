@@ -17,8 +17,6 @@
  *             capacities (O(E sqrt(E))).
  */
 
-const int INF = 1 << 29;
-
 struct dinic {
     ll n, s, t;
     vector<ll> dist, q, work;
