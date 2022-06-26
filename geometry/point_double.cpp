@@ -68,11 +68,11 @@ ld area2(point a, point b, point c) { // two times signed area of triangle abc
 }
 
 bool left(point a, point b, point c) {
-	return area2(a, b, c) > EPS;
+	return area2(a, b, c) > EPS; // counterclockwise
 }
 
 bool right(point a, point b, point c) {
-	return area2(a, b, c) < -EPS;
+	return area2(a, b, c) < -EPS; // clockwise
 }
 
 bool collinear(point a, point b, point c) {

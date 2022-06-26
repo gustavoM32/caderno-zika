@@ -51,11 +51,11 @@ ll area2(point a, point b, point c) { // two times signed area of triangle abc
 }
 
 bool left(point a, point b, point c) {
-	return area2(a, b, c) > 0;
+	return area2(a, b, c) > 0; // counterclockwise
 }
 
 bool right(point a, point b, point c) {
-	return area2(a, b, c) < 0;
+	return area2(a, b, c) < 0; // clockwise
 }
 
 bool collinear(point a, point b, point c) {
