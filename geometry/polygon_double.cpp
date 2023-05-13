@@ -39,7 +39,7 @@ struct polygon {
             if(!right(p[0], p[mid], q)) lo = mid;
             else hi = mid;
         }
-        return hi != n ? !right(p[lo], p[hi], q) : dist(p[0], q) < dist2(p[0], p[n-1]) + EPS;
+        return hi != n ? !right(p[lo], p[hi], q) : dist2(p[0], q) < dist2(p[0], p[n-1]) + EPS;
     }
     ld calipers() { // O(n). The polygon must be convex and in ccw order.
         ld ans = 0;
